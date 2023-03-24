@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Quick's Pokedex</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <button id="secondgeneration" onclick="second_generation()">Secong generation</button>
+            <ul id="pokedex"></ul>
+            <ul id="second"></ul>
+        </div>
+        <script src="main.js"></script>
+    </body>
+
+    <script>
+
+var generateBtn = document.getElementById('secondgeneration');
+generateBtn.addEventListener('click', second_generation);
+const second = document.getElementById('second');
+
+function second_generation() {
+    const promises = [];
+    for (let i = 152; i <= 252; i++) {
+        console.log('fetching second generation');
+        const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+        promises.push(fetch(url).then(res => res.json()));
+    }
+
+        Promise.all(promises).then(results => {
+            const pokemon = results.map(data  => ({
+                name: data.name,
+                id: data.id,
+                image: data.sprites['front_default'],
+                type: data.types.map(type => type.type.name).join(', ')
+            }));
+            display_pokemon(pokemon);
+        });
+}
+
+    </script>
+</html>
