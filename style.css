@@ -10,7 +10,7 @@ body {
 
 .card {
     list-style: none;
-    padding: 40px;
+    /* padding: 40px; */
     background-color: #fff;
     color: #222;
     text-align: center;
@@ -78,5 +78,16 @@ h1 {
     text-transform: uppercase;
     text-align: center;
     font-size: 48px;
+}
+
+label {
+    color: aqua;
+}
+
+input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin: 10px;
 }
 
